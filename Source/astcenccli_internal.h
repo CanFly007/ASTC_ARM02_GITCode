@@ -142,7 +142,7 @@ astcenc_image* load_ncimage(
  *
  * @return The astc image file, or nullptr on error.
  */
-astcenc_image* load_png_with_wuffs(
+ASTCENC_PUBLIC astcenc_image* load_png_with_wuffs(
 	const char* filename,
 	bool y_flip,
 	bool& is_hdr,
@@ -199,7 +199,7 @@ astcenc_image* alloc_image(
  *
  * @param img   The image to free.
  */
-void free_image(
+ASTCENC_PUBLIC void free_image(
 	astcenc_image* img);
 
 /**
@@ -232,7 +232,7 @@ int load_cimage(
  *
  * @return Non-zero on error, zero on success.
  */
-int store_cimage(
+ASTCENC_PUBLIC int store_cimage(
 	const astc_compressed_image& img,
 	const char* filename);
 
