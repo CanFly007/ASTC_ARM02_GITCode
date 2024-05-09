@@ -24,6 +24,15 @@ target_include_directories(astc_arm PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/Source/T
 # 指定包含目录（对外提供头文件）
 target_include_directories(astc_arm PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/Source)
 
+# 平台特定配置
+if(APPLE)
+    # 设置 macOS 的目标架构为 x86_64 和 arm64
+    set(CMAKE_OSX_ARCHITECTURES "x86_64;arm64" CACHE STRING "Build architectures for Mac OS X" FORCE)
+elseif(WIN32)
+    # Windows 平台特定的配置，如果有的话
+    # 例如，你可能需要设置用于 Windows 的编译器标志或定义
+endif()
+
 # 配置安装规则，可选
 # install(TARGETS astc_arm
 #     RUNTIME DESTINATION bin
