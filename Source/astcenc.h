@@ -171,13 +171,21 @@
 #include <cstdint>
 
 #if defined(ASTCENC_DYNAMIC_LIBRARY)
-	#if defined(_MSC_VER)
-		#define ASTCENC_PUBLIC extern "C" __declspec(dllexport)
-	#else
-		#define ASTCENC_PUBLIC extern "C" __attribute__ ((visibility ("default")))
-	#endif
+    #if defined(_MSC_VER)
+        #define ASTCENC_PUBLIC extern "C" __declspec(dllexport)
+    #elif defined(__GNUC__) || defined(__clang__)
+        #define ASTCENC_PUBLIC extern "C" __attribute__ ((visibility ("default")))
+    #else
+        #error "Unsupported compiler"
+    #endif
 #else
-	#define ASTCENC_PUBLIC extern "C" __declspec(dllimport)
+	#if defined(_MSC_VER)
+		#define ASTCENC_PUBLIC extern "C" __declspec(dllimport)
+	#elif defined(__GNUC__) || defined(__clang__)
+		#define ASTCENC_PUBLIC extern "C"
+	#else
+		#error "Unsupported compiler"
+	#endif
 #endif
 
 /* ============================================================================
