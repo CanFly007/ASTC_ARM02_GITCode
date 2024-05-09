@@ -1,5 +1,8 @@
 cmake_minimum_required(VERSION 3.10) # 指定最低CMake版本
 
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 project(astc_arm) # 项目名称
 
 # 指定生成的库类型为DLL
